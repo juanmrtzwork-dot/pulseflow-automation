@@ -1,0 +1,116 @@
+{
+  "automations": [
+    {
+      "id": "aut-001",
+      "name": "Lead inbound > CRM > Slack",
+      "department": "Ventas",
+      "status": "Activa",
+      "trigger": "Formulario web recibido",
+      "actions": ["Crear lead", "Asignar ejecutivo", "Notificar a Slack"],
+      "runs": 1842,
+      "successRate": 98.6,
+      "savedHours": 74
+    },
+    {
+      "id": "aut-002",
+      "name": "Facturas vencidas > Recordatorio",
+      "department": "Finanzas",
+      "status": "Activa",
+      "trigger": "Factura vence en 3 dias",
+      "actions": ["Enviar email", "Crear tarea", "Escalar si no responde"],
+      "runs": 623,
+      "successRate": 96.9,
+      "savedHours": 29
+    },
+    {
+      "id": "aut-003",
+      "name": "Onboarding de clientes enterprise",
+      "department": "Customer Success",
+      "status": "En revision",
+      "trigger": "Deal ganado",
+      "actions": ["Crear workspace", "Enviar checklist", "Agendar kickoff"],
+      "runs": 89,
+      "successRate": 93.2,
+      "savedHours": 17
+    }
+  ],
+  "templates": [
+    {
+      "id": "tpl-001",
+      "title": "Ventas y CRM",
+      "description": "Captura leads, puntua oportunidades y asigna vendedores automaticamente.",
+      "integrations": ["HubSpot", "Salesforce", "Slack"]
+    },
+    {
+      "id": "tpl-002",
+      "title": "Cobranza automatizada",
+      "description": "Detecta facturas por vencer y ejecuta recordatorios y escalaciones.",
+      "integrations": ["Stripe", "Xero", "Gmail"]
+    },
+    {
+      "id": "tpl-003",
+      "title": "RRHH y onboarding",
+      "description": "Coordina altas de personal, accesos y aprobaciones internas.",
+      "integrations": ["Google Workspace", "Notion", "Teams"]
+    }
+  ],
+  "executions": [
+    {
+      "id": "run-1842",
+      "automationId": "aut-001",
+      "automation": "Lead inbound > CRM > Slack",
+      "status": "Completada",
+      "startedAt": "2026-04-24 09:20",
+      "duration": "02.4s"
+    },
+    {
+      "id": "run-1841",
+      "automationId": "aut-002",
+      "automation": "Facturas vencidas > Recordatorio",
+      "status": "Completada",
+      "startedAt": "2026-04-24 08:55",
+      "duration": "01.1s"
+    },
+    {
+      "id": "run-1840",
+      "automationId": "aut-003",
+      "automation": "Onboarding de clientes enterprise",
+      "status": "Requiere atencion",
+      "startedAt": "2026-04-24 08:41",
+      "duration": "06.8s"
+    }
+  ],
+  "demoRequests": [
+    {
+      "id": "demo-001",
+      "company": "Nova Logistics",
+      "contact": "Laura Perez, COO",
+      "useCase": "Finanzas y cobranzas",
+      "createdAt": "2026-04-24T01:30:00.000Z",
+      "stage": "Demo agendada"
+    }
+  ],
+  "plans": [
+    {
+      "id": "plan-starter",
+      "name": "Starter",
+      "price": "USD 900/mes",
+      "description": "Ideal para validar 1 proceso y cerrar el primer cliente.",
+      "includes": ["2 automatizaciones", "1 integracion principal", "Soporte email"]
+    },
+    {
+      "id": "plan-growth",
+      "name": "Growth",
+      "price": "USD 2,500/mes",
+      "description": "Para pymes y equipos comerciales con varios procesos.",
+      "includes": ["10 automatizaciones", "5 integraciones", "Reportes y auditoria"]
+    },
+    {
+      "id": "plan-enterprise",
+      "name": "Enterprise",
+      "price": "Desde USD 6,000/mes",
+      "description": "Implementacion por area con onboarding, seguridad y SLA.",
+      "includes": ["Workflows ilimitados", "SSO y aprobaciones", "Soporte prioritario"]
+    }
+  ]
+}

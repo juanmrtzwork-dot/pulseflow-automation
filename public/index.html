@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PulseFlow | Automatizaciones para empresas</title>
+    <meta
+      name="description"
+      content="PulseFlow centraliza automatizaciones empresariales para ventas, finanzas, operaciones y customer success."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <div class="brand">
+            <span class="brand-mark"></span>
+            <span>PulseFlow</span>
+          </div>
+          <div class="topbar-links">
+            <a href="#workspace">Workspace</a>
+            <a href="#planes">Planes</a>
+            <a href="#go-to-market">Venta B2B</a>
+            <a href="#demo">Solicitar demo</a>
+          </div>
+        </nav>
+
+        <div class="hero-grid">
+          <section class="hero-copy">
+            <p class="eyebrow">Automation OS para empresas</p>
+            <h1>Una app funcional para vender automatizaciones como servicio o SaaS.</h1>
+            <p class="hero-text">
+              Crea workflows, ejecuta pruebas, enseña resultados y captura leads desde una sola app.
+              Esta version ya sirve para demos comerciales y primeras ventas.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#workspace">Entrar al workspace</a>
+              <a class="btn btn-secondary" href="#planes">Ver pricing</a>
+            </div>
+            <div class="hero-proof">
+              <span>CRUD basico real</span>
+              <span>Persistencia local</span>
+              <span>Deploy-ready</span>
+            </div>
+          </section>
+
+          <aside class="hero-panel">
+            <div class="panel-card panel-card-main">
+              <p class="panel-label">Oferta comercial</p>
+              <h2>Vende ahorro operativo, no solo “automatizaciones”.</h2>
+              <div class="panel-stats">
+                <div>
+                  <strong id="metric-pipeline">0</strong>
+                  <span>leads capturados</span>
+                </div>
+                <div>
+                  <strong id="metric-hours-preview">0h</strong>
+                  <span>horas ahorradas visibles</span>
+                </div>
+              </div>
+            </div>
+            <div class="panel-card panel-card-mini">
+              <p class="panel-label">Lo que ya puedes enseñar</p>
+              <ul>
+                <li>Panel con automatizaciones y ejecuciones</li>
+                <li>Formulario para nuevos flujos</li>
+                <li>Pricing y posicionamiento enterprise</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </header>
+
+      <main>
+        <section class="metrics-strip" id="producto">
+          <article>
+            <span class="metric-value" id="metric-automations">0</span>
+            <span class="metric-label">Automatizaciones activas</span>
+          </article>
+          <article>
+            <span class="metric-value" id="metric-runs">0</span>
+            <span class="metric-label">Ejecuciones acumuladas</span>
+          </article>
+          <article>
+            <span class="metric-value" id="metric-hours">0h</span>
+            <span class="metric-label">Horas recuperadas</span>
+          </article>
+          <article>
+            <span class="metric-value" id="metric-success">0%</span>
+            <span class="metric-label">Tasa de exito</span>
+          </article>
+        </section>
+
+        <section class="section workspace-section" id="workspace">
+          <div class="section-heading">
+            <p class="eyebrow">Workspace funcional</p>
+            <h2>Gestiona automatizaciones y demuestra impacto en vivo.</h2>
+          </div>
+          <div class="workspace-grid">
+            <div class="dashboard-card compose-card">
+              <div class="card-header">
+                <h3>Nueva automatizacion</h3>
+                <span class="tag">Builder</span>
+              </div>
+              <form id="automation-form" class="demo-form compact-form">
+                <label>
+                  Nombre
+                  <input type="text" name="name" placeholder="Ej. Facturas > seguimiento" required />
+                </label>
+                <label>
+                  Area
+                  <select name="department" required>
+                    <option value="">Selecciona un area</option>
+                    <option>Ventas</option>
+                    <option>Finanzas</option>
+                    <option>Operaciones</option>
+                    <option>RRHH</option>
+                    <option>Customer Success</option>
+                  </select>
+                </label>
+                <label>
+                  Trigger
+                  <input type="text" name="trigger" placeholder="Ej. Nuevo formulario recibido" required />
+                </label>
+                <label>
+                  Acciones
+                  <input
+                    type="text"
+                    name="actions"
+                    placeholder="Separadas por comas: crear lead, avisar a Slack"
+                    required
+                  />
+                </label>
+                <button type="submit" class="btn btn-primary btn-block">Crear automatizacion</button>
+                <p id="automation-status" class="form-status" aria-live="polite"></p>
+              </form>
+            </div>
+
+            <div class="dashboard-card automations-card">
+              <div class="card-header">
+                <h3>Automatizaciones</h3>
+                <span class="tag">Live</span>
+              </div>
+              <div id="automations-list" class="stack-list"></div>
+            </div>
+
+            <div class="dashboard-card templates-card">
+              <div class="card-header">
+                <h3>Plantillas vendibles</h3>
+                <span class="tag">B2B</span>
+              </div>
+              <div id="templates-list" class="stack-list"></div>
+            </div>
+
+            <div class="dashboard-card executions-card">
+              <div class="card-header">
+                <h3>Ultimas ejecuciones</h3>
+                <span class="tag tag-alert">Audit trail</span>
+              </div>
+              <div id="executions-list" class="stack-list"></div>
+            </div>
+
+            <div class="dashboard-card leads-card">
+              <div class="card-header">
+                <h3>Leads capturados</h3>
+                <span class="tag">CRM</span>
+              </div>
+              <div id="demo-requests-list" class="stack-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section pricing-section" id="planes">
+          <div class="section-heading">
+            <p class="eyebrow">Pricing sugerido</p>
+            <h2>Paquetes listos para vender a empresas desde el primer mes.</h2>
+          </div>
+          <div id="plans-list" class="plans-grid"></div>
+        </section>
+
+        <section class="section go-market-section" id="go-to-market">
+          <div class="section-heading">
+            <p class="eyebrow">Como venderlo</p>
+            <h2>Convierte la app en una oferta comercial clara y facil de cerrar.</h2>
+          </div>
+          <div class="value-grid">
+            <article class="value-card">
+              <h3>1. Vende un problema</h3>
+              <p>Entra por un caso concreto: leads, cobranzas, onboarding o aprobaciones internas.</p>
+            </article>
+            <article class="value-card">
+              <h3>2. Cobra setup + mensualidad</h3>
+              <p>Ejemplo: setup inicial de USD 2,000 a 8,000 y luego fee mensual por soporte y evolucion.</p>
+            </article>
+            <article class="value-card">
+              <h3>3. Demuestra ROI rapido</h3>
+              <p>Mide horas ahorradas, tiempos de respuesta y errores evitados. Eso es lo que compra direccion.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section cta-section" id="demo">
+          <div class="cta-copy">
+            <p class="eyebrow">Captura prospectos</p>
+            <h2>Solicita una demo y alimenta tu pipeline comercial desde la misma app.</h2>
+            <p>
+              Cuando publiques esta web, este formulario puede convertirse en tu canal de captacion
+              para reuniones con gerencia, operaciones y equipos comerciales.
+            </p>
+          </div>
+          <form id="demo-form" class="demo-form">
+            <label>
+              Empresa
+              <input type="text" name="company" placeholder="Ej. Nova Logistics" required />
+            </label>
+            <label>
+              Contacto
+              <input type="text" name="contact" placeholder="Nombre y cargo" required />
+            </label>
+            <label>
+              Caso prioritario
+              <select name="useCase" required>
+                <option value="">Selecciona una opcion</option>
+                <option>Ventas y CRM</option>
+                <option>Finanzas y cobranzas</option>
+                <option>Onboarding y operaciones</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-primary btn-block">Enviar solicitud</button>
+            <p id="form-status" class="form-status" aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

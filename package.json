@@ -1,0 +1,16 @@
+{
+  "name": "pulseflow-automations",
+  "version": "1.0.0",
+  "description": "MVP de app de automatizaciones B2B para vender a empresas.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "automation",
+    "b2b",
+    "saas",
+    "workflow"
+  ],
+  "license": "MIT"
+}
