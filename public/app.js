@@ -1,12 +1,3 @@
-const state = {
-  automations: [],
-  templates: [],
-  executions: [],
-  demoRequests: [],
-  plans: [],
-  overview: null
-};
-
 async function fetchJson(url, options) {
   const response = await fetch(url, options);
 
@@ -17,7 +8,7 @@ async function fetchJson(url, options) {
       const data = await response.json();
       message = data.message || message;
     } catch (error) {
-      // Ignored because some responses may not include JSON.
+      // Ignored on purpose.
     }
 
     throw new Error(message);
@@ -27,17 +18,7 @@ async function fetchJson(url, options) {
 }
 
 function formatNumber(value) {
-  return new Intl.NumberFormat("es-ES").format(value);
-}
-
-function renderOverview(data) {
-  state.overview = data;
-  document.getElementById("metric-automations").textContent = formatNumber(data.metrics.automations);
-  document.getElementById("metric-runs").textContent = formatNumber(data.metrics.runs);
-  document.getElementById("metric-hours").textContent = `${formatNumber(data.metrics.savedHours)}h`;
-  document.getElementById("metric-success").textContent = `${data.metrics.successRate}%`;
-  document.getElementById("metric-pipeline").textContent = formatNumber(data.metrics.pipeline);
-  document.getElementById("metric-hours-preview").textContent = `${formatNumber(data.metrics.savedHours)}h`;
+  return new Intl.NumberFormat("en-US").format(value);
 }
 
 function statusClass(status) {
@@ -46,39 +27,25 @@ function statusClass(status) {
     : "status-warn";
 }
 
-function renderAutomations(items) {
-  const container = document.getElementById("automations-list");
-  state.automations = items;
+function renderOverview(data) {
+  document.getElementById("metric-automations").textContent = formatNumber(data.metrics.automations);
+  document.getElementById("metric-runs").textContent = formatNumber(data.metrics.runs);
+  document.getElementById("metric-hours").textContent = `${formatNumber(data.metrics.savedHours)}h`;
+  document.getElementById("metric-success").textContent = `${data.metrics.successRate}%`;
+  document.getElementById("metric-pipeline").textContent = formatNumber(data.metrics.pipeline);
+  document.getElementById("metric-hours-preview").textContent = `${formatNumber(data.metrics.savedHours)}h`;
+}
 
+function renderTemplates(items) {
+  const container = document.getElementById("templates-list");
   container.innerHTML = items
     .map(
       (item) => `
-        <article class="stack-item">
-          <div class="stack-head">
-            <div>
-              <h4>${item.name}</h4>
-              <p>${item.trigger}</p>
-            </div>
-            <div class="stack-actions">
-              <button class="btn btn-small btn-secondary run-button" data-id="${item.id}">Ejecutar</button>
-              <button
-                class="btn btn-small btn-secondary status-button"
-                data-id="${item.id}"
-                data-next="${item.status === "Activa" ? "Pausada" : "Activa"}"
-              >
-                ${item.status === "Activa" ? "Pausar" : "Activar"}
-              </button>
-            </div>
-          </div>
-          <div class="stack-meta">
-            <span>${item.department}</span>
-            <span class="${statusClass(item.status)}">${item.status}</span>
-            <span>${item.runs} runs</span>
-            <span>${item.successRate}% exito</span>
-            <span>${item.savedHours}h ahorradas</span>
-          </div>
+        <article class="value-card">
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
           <div class="pill-row">
-            ${item.actions.map((action) => `<span class="mini-pill">${action}</span>`).join("")}
+            ${item.integrations.map((integration) => `<span class="mini-pill">${integration}</span>`).join("")}
           </div>
         </article>
       `
@@ -86,18 +53,19 @@ function renderAutomations(items) {
     .join("");
 }
 
-function renderTemplates(items) {
-  const container = document.getElementById("templates-list");
-  state.templates = items;
-
+function renderAutomations(items) {
+  const container = document.getElementById("automations-list");
   container.innerHTML = items
+    .slice(0, 3)
     .map(
       (item) => `
         <article class="stack-item">
-          <h4>${item.title}</h4>
-          <p>${item.description}</p>
+          <h4>${item.name}</h4>
+          <p>${item.trigger}</p>
           <div class="stack-meta">
-            ${item.integrations.map((integration) => `<span>${integration}</span>`).join("")}
+            <span>${item.department}</span>
+            <span class="${statusClass(item.status)}">${item.status}</span>
+            <span>${item.runs} runs</span>
           </div>
         </article>
       `
@@ -107,9 +75,8 @@ function renderTemplates(items) {
 
 function renderExecutions(items) {
   const container = document.getElementById("executions-list");
-  state.executions = items;
-
   container.innerHTML = items
+    .slice(0, 4)
     .map(
       (item) => `
         <article class="stack-item">
@@ -118,27 +85,6 @@ function renderExecutions(items) {
           <div class="stack-meta">
             <span class="${statusClass(item.status)}">${item.status}</span>
             <span>${item.duration}</span>
-            <span>${item.id}</span>
-          </div>
-        </article>
-      `
-    )
-    .join("");
-}
-
-function renderDemoRequests(items) {
-  const container = document.getElementById("demo-requests-list");
-  state.demoRequests = items;
-
-  container.innerHTML = items
-    .map(
-      (item) => `
-        <article class="stack-item">
-          <h4>${item.company}</h4>
-          <p>${item.contact}</p>
-          <div class="stack-meta">
-            <span>${item.useCase}</span>
-            <span class="${statusClass(item.stage)}">${item.stage}</span>
           </div>
         </article>
       `
@@ -148,8 +94,6 @@ function renderDemoRequests(items) {
 
 function renderPlans(items) {
   const container = document.getElementById("plans-list");
-  state.plans = items;
-
   container.innerHTML = items
     .map(
       (item) => `
@@ -167,12 +111,11 @@ function renderPlans(items) {
 }
 
 async function refreshData() {
-  const [overview, automations, templates, executions, demoRequests, plans] = await Promise.all([
+  const [overview, automations, templates, executions, plans] = await Promise.all([
     fetchJson("/api/overview"),
     fetchJson("/api/automations"),
     fetchJson("/api/templates"),
     fetchJson("/api/executions"),
-    fetchJson("/api/demo-requests"),
     fetchJson("/api/plans")
   ]);
 
@@ -180,7 +123,6 @@ async function refreshData() {
   renderAutomations(automations);
   renderTemplates(templates);
   renderExecutions(executions);
-  renderDemoRequests(demoRequests);
   renderPlans(plans);
 }
 
@@ -192,7 +134,7 @@ document.getElementById("demo-form").addEventListener("submit", async (event) =>
   const formData = new FormData(form);
   const payload = Object.fromEntries(formData.entries());
 
-  status.textContent = "Enviando solicitud...";
+  status.textContent = "Sending request...";
 
   try {
     const data = await fetchJson("/api/demo-request", {
@@ -203,81 +145,11 @@ document.getElementById("demo-form").addEventListener("submit", async (event) =>
       body: JSON.stringify(payload)
     });
 
-    status.textContent = data.message;
+    status.textContent = `${data.message} We will follow up to schedule the audit.`;
     form.reset();
     await refreshData();
   } catch (error) {
     status.textContent = error.message;
-  }
-});
-
-document.getElementById("automation-form").addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-  const status = document.getElementById("automation-status");
-  const formData = new FormData(form);
-  const payload = Object.fromEntries(formData.entries());
-
-  status.textContent = "Creando automatizacion...";
-
-  try {
-    await fetchJson("/api/automations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    status.textContent = "Automatizacion creada.";
-    form.reset();
-    await refreshData();
-  } catch (error) {
-    status.textContent = error.message;
-  }
-});
-
-document.addEventListener("click", async (event) => {
-  const runButton = event.target.closest(".run-button");
-  const statusButton = event.target.closest(".status-button");
-
-  if (runButton) {
-    runButton.disabled = true;
-    runButton.textContent = "Ejecutando...";
-
-    try {
-      await fetchJson(`/api/automations/${runButton.dataset.id}/run`, {
-        method: "POST"
-      });
-      await refreshData();
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      runButton.disabled = false;
-      runButton.textContent = "Ejecutar";
-    }
-  }
-
-  if (statusButton) {
-    statusButton.disabled = true;
-
-    try {
-      await fetchJson(`/api/automations/${statusButton.dataset.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          status: statusButton.dataset.next
-        })
-      });
-      await refreshData();
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      statusButton.disabled = false;
-    }
   }
 });
 
