@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseFlow Automation | We build workflows that close more business</title>
+  <meta name="description" content="We find slow, repetitive processes and turn them into automated workflows. Fast audit, quick implementation, measurable results." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf5ef;
+      --cream-dark: #f0e8df;
+      --brown: #1c1209;
+      --brown-mid: #3d2b1f;
+      --brown-light: #7a5c4a;
+      --accent: #c4714a;
+      --accent-hover: #a85c39;
+      --accent-light: #f5e6de;
+      --border: #ddd4c8;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(28,18,9,0.08);
+      --shadow-lg: 0 12px 48px rgba(28,18,9,0.15);
+      --radius: 16px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(250,245,239,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--brown); text-decoration: none;
+    }
+    .nav-logo-dot {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #e8956a);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none; color: var(--brown-mid);
+      font-size: 0.875rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .lang-toggle {
+      display: flex; background: var(--cream-dark); border-radius: 20px;
+      padding: 3px; gap: 2px;
+    }
+    .lang-btn {
+      padding: 4px 12px; border-radius: 16px; border: none;
+      background: transparent; cursor: pointer;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--brown-light); transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--white); color: var(--brown);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .nav-cta {
+      padding: 8px 20px; background: var(--accent); color: var(--white);
+      border-radius: 20px; text-decoration: none;
+      font-size: 0.875rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-hover); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 60px;
+      padding: 100px 80px 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; right: -100px; top: 50%;
+      transform: translateY(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,113,74,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--brown); margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--brown-light);
+      max-width: 480px; margin-bottom: 36px; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+    .btn-primary {
+      padding: 14px 28px; background: var(--accent); color: var(--white);
+      border-radius: 28px; text-decoration: none;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(196,113,74,0.35);
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-secondary {
+      padding: 14px 28px; background: transparent; color: var(--brown);
+      border-radius: 28px; text-decoration: none;
+      font-weight: 600; font-size: 0.95rem;
+      border: 2px solid var(--border); transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-badges { display: flex; gap: 12px; flex-wrap: wrap; }
+    .badge {
+      padding: 6px 16px; border-radius: 20px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem; font-weight: 500; color: var(--brown-mid);
+      background: var(--white);
+    }
+    /* Hero right panel */
+    .hero-panel {
+      background: var(--white); border-radius: 24px;
+      padding: 32px; box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+    .hero-panel-title {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--brown-light); margin-bottom: 20px;
+    }
+    .panel-stat {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid var(--cream-dark);
+    }
+    .panel-stat:last-child { border-bottom: none; }
+    .panel-stat-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--accent-light); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .panel-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; color: var(--brown);
+      display: block;
+    }
+    .panel-stat-label { font-size: 0.8rem; color: var(--brown-light); }
+    .panel-activity {
+      margin-top: 20px; padding: 14px 16px;
+      background: var(--cream); border-radius: var(--radius-sm);
+    }
+    .activity-dot {
+      display: inline-block; width: 8px; height: 8px;
+      background: #4ade80; border-radius: 50%;
+      margin-right: 8px; animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .activity-text { font-size: 0.8rem; color: var(--brown-mid); }
+
+    /* ── STATS ── */
+    #stats {
+      background: var(--brown);
+      padding: 60px 80px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem; font-weight: 900;
+      color: var(--white); display: block; margin-bottom: 8px;
+    }
+    .stat-label { font-size: 0.875rem; color: rgba(255,255,255,0.6); }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 80px; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; color: var(--brown);
+      max-width: 640px; line-height: 1.2; margin-bottom: 48px;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .service-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 32px; border: 1px solid var(--border);
+      transition: all 0.3s; cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: var(--accent-light); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--brown); margin-bottom: 12px;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--brown-light); line-height: 1.6; }
+
+    /* ── HOW IT WORKS ── */
+    #how { background: var(--cream-dark); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .step {
+      position: relative; padding: 32px;
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 900;
+      color: var(--accent-light); position: absolute;
+      top: 20px; right: 24px; line-height: 1;
+    }
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--brown); margin-bottom: 12px;
+    }
+    .step-desc { font-size: 0.9rem; color: var(--brown-light); line-height: 1.6; }
+
+    /* ── USE CASES ── */
+    #use-cases { background: var(--cream); }
+    .cases-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    .case-card {
+      border-radius: var(--radius); padding: 28px 32px;
+      border: 1px solid var(--border); background: var(--white);
+      display: grid; grid-template-columns: auto 1fr; gap: 20px;
+      align-items: start; transition: all 0.3s;
+    }
+    .case-card:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+    .case-emoji { font-size: 2rem; }
+    .case-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--brown); margin-bottom: 8px;
+    }
+    .case-desc { font-size: 0.875rem; color: var(--brown-light); }
+    .case-result {
+      margin-top: 12px; font-size: 0.8rem; font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ── AUDIT ── */
+    #audit { background: var(--brown); color: var(--white); }
+    #audit .section-label { color: rgba(196,113,74,0.8); }
+    #audit .section-title { color: var(--white); }
+    .audit-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: start;
+    }
+    .audit-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .audit-list li {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 0.95rem; color: rgba(255,255,255,0.8);
+    }
+    .audit-list li::before {
+      content: "✓"; color: var(--accent);
+      font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .audit-cta-box {
+      background: rgba(255,255,255,0.06); border-radius: var(--radius);
+      padding: 36px; border: 1px solid rgba(255,255,255,0.12);
+    }
+    .audit-cta-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    .audit-cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .audit-cta-desc { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+    .audit-perks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .audit-perk { font-size: 0.875rem; color: rgba(255,255,255,0.75); }
+    .audit-perk span { color: var(--accent); margin-right: 8px; }
+
+    /* ── PLANS ── */
+    #plans { background: var(--cream); }
+    .plans-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .plan-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 36px; border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transition: all 0.3s;
+    }
+    .plan-card.featured {
+      background: var(--accent); border-color: var(--accent);
+      color: var(--white); transform: scale(1.03);
+      box-shadow: var(--shadow-lg);
+    }
+    .plan-name {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--brown-light); margin-bottom: 16px;
+    }
+    .plan-card.featured .plan-name { color: rgba(255,255,255,0.75); }
+    .plan-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 900;
+      color: var(--brown); margin-bottom: 4px;
+    }
+    .plan-card.featured .plan-price { color: var(--white); }
+    .plan-period { font-size: 0.875rem; color: var(--brown-light); margin-bottom: 24px; }
+    .plan-card.featured .plan-period { color: rgba(255,255,255,0.7); }
+    .plan-features { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+    .plan-features li { display: flex; gap: 10px; font-size: 0.875rem; color: var(--brown-mid); }
+    .plan-card.featured .plan-features li { color: rgba(255,255,255,0.9); }
+    .plan-features li::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .plan-card.featured .plan-features li::before { color: rgba(255,255,255,0.9); }
+    .plan-btn {
+      display: block; text-align: center;
+      padding: 14px; border-radius: 28px;
+      font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      border: 2px solid var(--accent); color: var(--accent);
+      transition: all 0.2s;
+    }
+    .plan-btn:hover { background: var(--accent); color: var(--white); }
+    .plan-card.featured .plan-btn {
+      background: var(--white); color: var(--accent); border-color: var(--white);
+    }
+    .plan-card.featured .plan-btn:hover { background: rgba(255,255,255,0.9); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream-dark); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: start;
+    }
+    .contact-info p { font-size: 0.95rem; color: var(--brown-light); margin-bottom: 32px; }
+    .contact-perks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .contact-perk {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.9rem; color: var(--brown-mid);
+    }
+    .contact-perk-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: var(--accent-light); display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-email {
+      font-size: 0.875rem; color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-email:hover { text-decoration: underline; }
+
+    /* Form */
+    form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    label { font-size: 0.8rem; font-weight: 600; color: var(--brown); }
+    input, select, textarea {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: var(--brown);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(196,113,74,0.1);
+    }
+    textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      padding: 14px; background: var(--accent); color: var(--white);
+      border: none; border-radius: 28px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(196,113,74,0.3);
+    }
+    .form-submit:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .form-success {
+      display: none; text-align: center; padding: 24px;
+      background: #f0fdf4; border-radius: var(--radius);
+      border: 1px solid #86efac; color: #166534;
+    }
+    .form-success h3 { font-family: 'Playfair Display', serif; margin-bottom: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown); color: rgba(255,255,255,0.6);
+      padding: 40px 80px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; color: var(--white); font-size: 1rem;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── WHATSAPP BUTTON ── */
+    .wa-btn {
+      position: fixed; bottom: 90px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none; transition: all 0.2s;
+      animation: float 3s ease-in-out infinite;
+    }
+    .wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+    .wa-btn svg { width: 30px; height: 30px; fill: white; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .wa-tooltip {
+      position: fixed; bottom: 112px; right: 90px; z-index: 200;
+      background: var(--brown); color: var(--white);
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 0.8rem; font-weight: 500; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .wa-btn:hover + .wa-tooltip,
+    .wa-tooltip.show { opacity: 1; }
+
+    /* ── CHATBOT ── */
+    .chat-toggle {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(196,113,74,0.4);
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .chat-toggle:hover { background: var(--accent-hover); transform: scale(1.05); }
+    .chat-toggle svg { width: 26px; height: 26px; fill: white; }
+    .chat-toggle .chat-close { display: none; }
+    .chat-toggle.open .chat-icon { display: none; }
+    .chat-toggle.open .chat-close { display: block; }
+
+    .chat-widget {
+      position: fixed; bottom: 92px; right: 24px; z-index: 199;
+      width: 340px; max-height: 500px;
+      background: var(--white); border-radius: 20px;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      transform: scale(0.9) translateY(20px);
+      opacity: 0; pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+      transform-origin: bottom right;
+    }
+    .chat-widget.open {
+      transform: scale(1) translateY(0);
+      opacity: 1; pointer-events: all;
+    }
+    .chat-header {
+      padding: 16px 20px;
+      background: var(--accent); border-radius: 20px 20px 0 0;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .chat-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .chat-header-info h4 { color: white; font-size: 0.9rem; font-weight: 600; }
+    .chat-header-info p { color: rgba(255,255,255,0.8); font-size: 0.75rem; }
+    .chat-status { display: flex; align-items: center; gap: 5px; }
+    .chat-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      max-height: 320px;
+    }
+    .msg {
+      max-width: 85%; padding: 10px 14px; border-radius: 16px;
+      font-size: 0.875rem; line-height: 1.4; animation: msgIn 0.3s ease;
+    }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .msg-bot {
+      background: var(--cream); color: var(--brown);
+      border-radius: 4px 16px 16px 16px; align-self: flex-start;
+    }
+    .msg-user {
+      background: var(--accent); color: white;
+      border-radius: 16px 16px 4px 16px; align-self: flex-end;
+    }
+
+    .chat-options {
+      padding: 0 16px 16px;
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .chat-opt {
+      padding: 7px 14px; border-radius: 20px;
+      border: 1px solid var(--accent); color: var(--accent);
+      background: transparent; cursor: pointer;
+      font-size: 0.8rem; font-weight: 500;
+      transition: all 0.2s;
+    }
+    .chat-opt:hover { background: var(--accent); color: white; }
+
+    .chat-input-row {
+      padding: 12px 16px; border-top: 1px solid var(--border);
+      display: flex; gap: 8px;
+    }
+    .chat-input {
+      flex: 1; padding: 9px 14px; border-radius: 20px;
+      border: 1px solid var(--border); font-size: 0.875rem;
+      font-family: 'Inter', sans-serif; outline: none;
+    }
+    .chat-input:focus { border-color: var(--accent); }
+    .chat-send {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .chat-send:hover { background: var(--accent-hover); }
+    .chat-send svg { width: 16px; height: 16px; fill: white; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 80px 24px 40px; gap: 40px; }
+      .hero-panel { display: none; }
+      #stats { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
+      section { padding: 60px 24px; }
+      .services-grid, .steps-grid, .plans-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .audit-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
+      .plan-card.featured { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    PulseFlow
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services" data-en="Services" data-es="Servicios">Services</a></li>
+    <li><a href="#audit" data-en="Audit" data-es="Auditoría">Audit</a></li>
+    <li><a href="#use-cases" data-en="Use Cases" data-es="Casos">Use Cases</a></li>
+    <li><a href="#plans" data-en="Plans" data-es="Planes">Plans</a></li>
+    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-en="Book audit" data-es="Reservar auditoría">Book audit</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-left">
+    <div class="hero-label" data-en="Automation for SMEs and commercial teams" data-es="Automatización para PyMEs y equipos comerciales">Automation for SMEs and commercial teams</div>
+    <h1 class="hero-title">
+      <span data-en="We turn slow processes into workflows that" data-es="Convertimos procesos lentos en workflows que">We turn slow processes into workflows that</span>
+      <span class="accent"> <span data-en="close more business." data-es="cierran más negocios.">close more business.</span></span>
+    </h1>
+    <p class="hero-sub" data-en="We run fast automation audits to identify bottlenecks, recommend a clear solution, and implement the first workflow in days instead of months." data-es="Hacemos auditorías de automatización rápidas para identificar cuellos de botella, recomendamos una solución clara e implementamos el primer workflow en días, no meses.">We run fast automation audits to identify bottlenecks, recommend a clear solution, and implement the first workflow in days instead of months.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary" data-en="Book a free audit" data-es="Reservar auditoría gratis">Book a free audit</a>
+      <a href="#use-cases" class="btn-secondary" data-en="See use cases" data-es="Ver casos de uso">See use cases</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge" data-en="Fast audit" data-es="Auditoría rápida">Fast audit</span>
+      <span class="badge" data-en="Quick implementation" data-es="Implementación rápida">Quick implementation</span>
+      <span class="badge" data-en="ROI-focused" data-es="Orientado al ROI">ROI-focused</span>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div class="hero-panel-title" data-en="Live automation dashboard" data-es="Dashboard de automatizaciones en vivo">Live automation dashboard</div>
+    <div class="panel-stat">
+      <div class="panel-stat-icon">⚡</div>
+      <div>
+        <span class="panel-stat-val" data-count="24">24</span>
+        <span class="panel-stat-label" data-en="Workflows deployed" data-es="Workflows implementados">Workflows deployed</span>
+      </div>
+    </div>
+    <div class="panel-stat">
+      <div class="panel-stat-icon">🕐</div>
+      <div>
+        <span class="panel-stat-val" data-count="340">340h</span>
+        <span class="panel-stat-label" data-en="Hours saved for clients" data-es="Horas ahorradas a clientes">Hours saved for clients</span>
+      </div>
+    </div>
+    <div class="panel-stat">
+      <div class="panel-stat-icon">📈</div>
+      <div>
+        <span class="panel-stat-val" data-count="98">98%</span>
+        <span class="panel-stat-label" data-en="Operational health" data-es="Salud operacional">Operational health</span>
+      </div>
+    </div>
+    <div class="panel-activity">
+      <span class="activity-dot"></span>
+      <span class="activity-text" data-en="Lead follow-up workflow running — 3 new contacts processed" data-es="Workflow de seguimiento activo — 3 nuevos contactos procesados">Lead follow-up workflow running — 3 new contacts processed</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stat-item">
+    <span class="stat-num" data-count="24">24+</span>
+    <span class="stat-label" data-en="Automations built" data-es="Automatizaciones creadas">Automations built</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" data-count="340">340h</span>
+    <span class="stat-label" data-en="Hours recovered" data-es="Horas recuperadas">Hours recovered</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" data-count="48">48h</span>
+    <span class="stat-label" data-en="Average delivery time" data-es="Tiempo promedio de entrega">Average delivery time</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num" data-count="98">98%</span>
+    <span class="stat-label" data-en="Client satisfaction" data-es="Satisfacción del cliente">Client satisfaction</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label" data-en="What we do" data-es="Qué hacemos">What we do</div>
+  <h2 class="section-title" data-en="We enter through one painful process and turn it into a measurable improvement." data-es="Entramos por un proceso que duele y lo convertimos en una mejora medible.">We enter through one painful process and turn it into a measurable improvement.</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-title" data-en="Automation Audit" data-es="Auditoría de Automatización">Automation Audit</div>
+      <p class="service-desc" data-en="We review the process, the manual work behind it, and where time or revenue is leaking. In 30 minutes you know exactly what to fix first." data-es="Revisamos el proceso, el trabajo manual detrás y dónde se pierde tiempo o ingresos. En 30 minutos sabes exactamente qué corregir primero.">We review the process, the manual work behind it, and where time or revenue is leaking. In 30 minutes you know exactly what to fix first.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗺️</div>
+      <div class="service-title" data-en="Workflow Mapping" data-es="Mapeo de Workflow">Workflow Mapping</div>
+      <p class="service-desc" data-en="We define triggers, steps, owners, and tools involved so the solution fits reality — not a generic template." data-es="Definimos disparadores, pasos, responsables y herramientas para que la solución se adapte a tu realidad, no a una plantilla genérica.">We define triggers, steps, owners, and tools involved so the solution fits reality — not a generic template.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚀</div>
+      <div class="service-title" data-en="Fast Implementation" data-es="Implementación Rápida">Fast Implementation</div>
+      <p class="service-desc" data-en="We launch the first automation in days and leave a clean foundation for future growth. No bloated platforms, no 6-month rollouts." data-es="Lanzamos la primera automatización en días y dejamos una base limpia para crecer. Sin plataformas infladas, sin implementaciones de 6 meses.">We launch the first automation in days and leave a clean foundation for future growth. No bloated platforms, no 6-month rollouts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label" data-en="How it works" data-es="Cómo funciona">How it works</div>
+  <h2 class="section-title" data-en="Three steps from problem to working automation." data-es="Tres pasos del problema a la automatización funcionando.">Three steps from problem to working automation.</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title" data-en="Book a free audit" data-es="Reserva la auditoría gratis">Book a free audit</div>
+      <p class="step-desc" data-en="Tell us which process you want to fix. We review it together in a 20–30 minute call and map exactly where the friction is." data-es="Cuéntanos qué proceso quieres corregir. Lo revisamos juntos en una llamada de 20–30 minutos y mapeamos exactamente dónde está la fricción.">Tell us which process you want to fix. We review it together in a 20–30 minute call and map exactly where the friction is.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title" data-en="Get a clear proposal" data-es="Recibe una propuesta clara">Get a clear proposal</div>
+      <p class="step-desc" data-en="Within 24 hours you receive a workflow design, estimated time savings, and a fixed price. No vague quotes, no hidden costs." data-es="En 24 horas recibes un diseño del workflow, ahorro estimado de tiempo y un precio fijo. Sin cotizaciones vagas, sin costos ocultos.">Within 24 hours you receive a workflow design, estimated time savings, and a fixed price. No vague quotes, no hidden costs.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title" data-en="Launch in days" data-es="Lanza en días">Launch in days</div>
+      <p class="step-desc" data-en="We build, test, and hand off the automation. You see results immediately — tracked, measured, and documented." data-es="Construimos, probamos y entregamos la automatización. Ves resultados de inmediato, rastreados, medidos y documentados.">We build, test, and hand off the automation. You see results immediately — tracked, measured, and documented.</p>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="use-cases">
+  <div class="section-label" data-en="Use cases that sell" data-es="Casos de uso que venden">Use cases that sell</div>
+  <h2 class="section-title" data-en="Start with a problem the company already feels every week." data-es="Empieza con un problema que la empresa ya siente cada semana.">Start with a problem the company already feels every week.</h2>
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-emoji">📩</div>
+      <div>
+        <div class="case-title" data-en="Lead follow-up & sales workflows" data-es="Seguimiento de leads y workflows de ventas">Lead follow-up & sales workflows</div>
+        <p class="case-desc" data-en="Automate the first contact, reminders, and status updates across email, CRM, and WhatsApp so no lead goes cold." data-es="Automatiza el primer contacto, recordatorios y actualizaciones de estado en email, CRM y WhatsApp para que ningún lead se enfríe.">Automate the first contact, reminders, and status updates across email, CRM, and WhatsApp so no lead goes cold.</p>
+        <div class="case-result" data-en="→ 3x faster response time" data-es="→ 3x más rápido en responder">→ 3x faster response time</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-emoji">💰</div>
+      <div>
+        <div class="case-title" data-en="Collections & payment reminders" data-es="Cobranzas y recordatorios de pago">Collections & payment reminders</div>
+        <p class="case-desc" data-en="Automated sequences that remind, escalate, and log every follow-up without manual effort from your team." data-es="Secuencias automáticas que recuerdan, escalan y registran cada seguimiento sin esfuerzo manual de tu equipo.">Automated sequences that remind, escalate, and log every follow-up without manual effort from your team.</p>
+        <div class="case-result" data-en="→ 40% reduction in overdue accounts" data-es="→ 40% menos cuentas vencidas">→ 40% reduction in overdue accounts</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-emoji">🧑‍💼</div>
+      <div>
+        <div class="case-title" data-en="Client onboarding" data-es="Onboarding de clientes">Client onboarding</div>
+        <p class="case-desc" data-en="From signed contract to first meeting — all communication, document collection, and task creation done automatically." data-es="Del contrato firmado a la primera reunión: toda la comunicación, recopilación de documentos y creación de tareas, automática.">From signed contract to first meeting — all communication, document collection, and task creation done automatically.</p>
+        <div class="case-result" data-en="→ 5h saved per new client" data-es="→ 5h ahorradas por nuevo cliente">→ 5h saved per new client</div>
+      </div>
+    </div>
+    <div class="case-card">
+      <div class="case-emoji">📊</div>
+      <div>
+        <div class="case-title" data-en="Reporting & internal operations" data-es="Reportes y operaciones internas">Reporting & internal operations</div>
+        <p class="case-desc" data-en="Weekly reports, KPI tracking, and internal alerts built automatically — no more copy-pasting into spreadsheets." data-es="Reportes semanales, seguimiento de KPIs y alertas internas generados automáticamente. Nunca más copiar y pegar en hojas de cálculo.">Weekly reports, KPI tracking, and internal alerts built automatically — no more copy-pasting into spreadsheets.</p>
+        <div class="case-result" data-en="→ 8h/week of manual reporting eliminated" data-es="→ 8h/semana de reportes manuales eliminados">→ 8h/week of manual reporting eliminated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section id="audit">
+  <div class="section-label" data-en="Free audit offer" data-es="Auditoría gratis">Free audit offer</div>
+  <h2 class="section-title" data-en="In 20–30 minutes we identify what to automate first and how much impact it creates." data-es="En 20–30 minutos identificamos qué automatizar primero y cuánto impacto genera.">In 20–30 minutes we identify what to automate first and how much impact it creates.</h2>
+  <div class="audit-grid">
+    <div>
+      <h3 style="color:rgba(255,255,255,0.9);font-family:'Playfair Display',serif;margin-bottom:20px;font-size:1.1rem;" data-en="What we review:" data-es="Qué revisamos:">What we review:</h3>
+      <ul class="audit-list">
+        <li data-en="Manual, repetitive tasks eating your team's time" data-es="Tareas manuales y repetitivas que consumen el tiempo de tu equipo">Manual, repetitive tasks eating your team's time</li>
+        <li data-en="Delays between forms, email, CRM, spreadsheets, or payments" data-es="Demoras entre formularios, email, CRM, hojas de cálculo o pagos">Delays between forms, email, CRM, spreadsheets, or payments</li>
+        <li data-en="Follow-up, collections, or onboarding gaps" data-es="Brechas en seguimiento, cobranzas u onboarding">Follow-up, collections, or onboarding gaps</li>
+        <li data-en="Current tools and how they're (not) connected" data-es="Herramientas actuales y cómo (no) están conectadas">Current tools and how they're (not) connected</li>
+      </ul>
+      <h3 style="color:rgba(255,255,255,0.9);font-family:'Playfair Display',serif;margin:28px 0 20px;font-size:1.1rem;" data-en="What you get:" data-es="Qué recibes:">What you get:</h3>
+      <ul class="audit-list">
+        <li data-en="Clear problem diagnosis" data-es="Diagnóstico claro del problema">Clear problem diagnosis</li>
+        <li data-en="Recommended workflow to automate first" data-es="Workflow recomendado para automatizar primero">Recommended workflow to automate first</li>
+        <li data-en="Estimated time savings or friction reduction" data-es="Ahorro estimado de tiempo o reducción de fricción">Estimated time savings or friction reduction</li>
+        <li data-en="Scope, timeline, and price range" data-es="Alcance, cronograma y rango de precio">Scope, timeline, and price range</li>
+      </ul>
+    </div>
+    <div class="audit-cta-box">
+      <div class="audit-cta-label" data-en="Entry offer" data-es="Oferta de entrada">Entry offer</div>
+      <div class="audit-cta-title" data-en="Free audit — or credited toward your first project" data-es="Auditoría gratis — o acreditada en tu primer proyecto">Free audit — or credited toward your first project</div>
+      <p class="audit-cta-desc" data-en="Use the audit as your opening move. Low friction, high insight. If you proceed, the audit cost is deducted from your project." data-es="Usa la auditoría como tu primer paso. Sin fricción, con mucho aprendizaje. Si avanzas, el costo de la auditoría se descuenta del proyecto.">Use the audit as your opening move. Low friction, high insight. If you proceed, the audit cost is deducted from your project.</p>
+      <div class="audit-perks">
+        <div class="audit-perk"><span>⏱</span><span data-en="Reply within 24 hours" data-es="Respuesta en 24 horas">Reply within 24 hours</span></div>
+        <div class="audit-perk"><span>📞</span><span data-en="20–30 minute call" data-es="Llamada de 20–30 minutos">20–30 minute call</span></div>
+        <div class="audit-perk"><span>📄</span><span data-en="Written proposal with price and timeline" data-es="Propuesta escrita con precio y cronograma">Written proposal with price and timeline</span></div>
+      </div>
+      <a href="#contact" class="btn-primary" data-en="Book free audit" data-es="Reservar auditoría gratis">Book free audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section id="plans">
+  <div class="section-label" data-en="Pricing" data-es="Precios">Pricing</div>
+  <h2 class="section-title" data-en="Simple pricing for your first automation projects." data-es="Precios simples para tus primeros proyectos de automatización.">Simple pricing for your first automation projects.</h2>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-name" data-en="Starter" data-es="Inicial">Starter</div>
+      <div class="plan-price">$500</div>
+      <div class="plan-period" data-en="one-time setup" data-es="configuración única">one-time setup</div>
+      <ul class="plan-features">
+        <li data-en="1 automated workflow" data-es="1 workflow automatizado">1 automated workflow</li>
+        <li data-en="Free audit included" data-es="Auditoría gratis incluida">Free audit included</li>
+        <li data-en="Deployment in 48–72h" data-es="Implementación en 48–72h">Deployment in 48–72h</li>
+        <li data-en="30-day support" data-es="Soporte 30 días">30-day support</li>
+      </ul>
+      <a href="#contact" class="plan-btn" data-en="Get started" data-es="Empezar">Get started</a>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-name" data-en="Growth" data-es="Crecimiento">Growth</div>
+      <div class="plan-price">$1,200</div>
+      <div class="plan-period" data-en="one-time + $300/mo support" data-es="único + $300/mes soporte">one-time + $300/mo support</div>
+      <ul class="plan-features">
+        <li data-en="Up to 3 automated workflows" data-es="Hasta 3 workflows automatizados">Up to 3 automated workflows</li>
+        <li data-en="Free audit + full mapping" data-es="Auditoría gratis + mapeo completo">Free audit + full mapping</li>
+        <li data-en="Delivery in 5–7 days" data-es="Entrega en 5–7 días">Delivery in 5–7 days</li>
+        <li data-en="Monthly optimization included" data-es="Optimización mensual incluida">Monthly optimization included</li>
+        <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
+      </ul>
+      <a href="#contact" class="plan-btn" data-en="Most popular" data-es="Más popular">Most popular</a>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name" data-en="Operator" data-es="Operador">Operator</div>
+      <div class="plan-price" data-en="Custom" data-es="A medida">Custom</div>
+      <div class="plan-period" data-en="for complex operations" data-es="para operaciones complejas">for complex operations</div>
+      <ul class="plan-features">
+        <li data-en="Unlimited workflows" data-es="Workflows ilimitados">Unlimited workflows</li>
+        <li data-en="Full system integration" data-es="Integración completa de sistemas">Full system integration</li>
+        <li data-en="Dedicated operations review" data-es="Revisión operacional dedicada">Dedicated operations review</li>
+        <li data-en="Ongoing retainer" data-es="Retainer continuo">Ongoing retainer</li>
+        <li data-en="Team training" data-es="Capacitación del equipo">Team training</li>
+      </ul>
+      <a href="#contact" class="plan-btn" data-en="Let's talk" data-es="Hablemos">Let's talk</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" data-en="Contact" data-es="Contacto">Contact</div>
+  <h2 class="section-title" data-en="Book an audit and tell us which process you want to fix first." data-es="Reserva una auditoría y cuéntanos qué proceso quieres corregir primero.">Book an audit and tell us which process you want to fix first.</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p data-en="We reply within 24 hours. The audit is free or credited toward your first project." data-es="Respondemos en 24 horas. La auditoría es gratis o se acredita en tu primer proyecto.">We reply within 24 hours. The audit is free or credited toward your first project.</p>
+      <div class="contact-perks">
+        <div class="contact-perk">
+          <div class="contact-perk-icon">⏱</div>
+          <span data-en="Reply within 24 hours" data-es="Respuesta en 24 horas">Reply within 24 hours</span>
+        </div>
+        <div class="contact-perk">
+          <div class="contact-perk-icon">📞</div>
+          <span data-en="20–30 min audit call" data-es="Llamada de auditoría 20–30 min">20–30 min audit call</span>
+        </div>
+        <div class="contact-perk">
+          <div class="contact-perk-icon">📄</div>
+          <span data-en="Proposal with price and timeline" data-es="Propuesta con precio y cronograma">Proposal with price and timeline</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem;color:var(--brown-light);margin-bottom:6px;" data-en="Or reach out directly:" data-es="O contáctanos directamente:">Or reach out directly:</div>
+        <a href="mailto:juanmrtzwork@gmail.com" class="contact-email">juanmrtzwork@gmail.com</a>
+      </div>
+    </div>
+
+    <div>
+      <!-- Netlify form -->
+      <form name="audit-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="audit-form">
+        <input type="hidden" name="form-name" value="audit-request" />
+        <input type="hidden" name="bot-field" style="display:none" />
+
+        <div class="form-group">
+          <label data-en="Company" data-es="Empresa">Company</label>
+          <input type="text" name="company" placeholder="Nova Logistics" required />
+        </div>
+        <div class="form-group">
+          <label data-en="Your name & role" data-es="Tu nombre y cargo">Your name & role</label>
+          <input type="text" name="contact" placeholder="Juan — Operations Manager" required />
+        </div>
+        <div class="form-group">
+          <label data-en="Email" data-es="Email">Email</label>
+          <input type="email" name="email" placeholder="you@company.com" required />
+        </div>
+        <div class="form-group">
+          <label data-en="Process to improve" data-es="Proceso a mejorar">Process to improve</label>
+          <select name="process" required>
+            <option value="" data-en="Select an option" data-es="Selecciona una opción">Select an option</option>
+            <option value="leads" data-en="Lead follow-up and sales workflow" data-es="Seguimiento de leads y ventas">Lead follow-up and sales workflow</option>
+            <option value="collections" data-en="Collections and payment reminders" data-es="Cobranzas y recordatorios de pago">Collections and payment reminders</option>
+            <option value="onboarding" data-en="Onboarding and operations" data-es="Onboarding y operaciones">Onboarding and operations</option>
+            <option value="support" data-en="Customer support workflow" data-es="Workflow de soporte al cliente">Customer support workflow</option>
+            <option value="other" data-en="Other" data-es="Otro">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-en="Tell us more (optional)" data-es="Cuéntanos más (opcional)">Tell us more (optional)</label>
+          <textarea name="message" placeholder="What does the process look like today?"></textarea>
+        </div>
+        <button type="submit" class="form-submit" data-en="Request free audit →" data-es="Solicitar auditoría gratis →">Request free audit →</button>
+      </form>
+      <div class="form-success" id="form-success">
+        <h3 data-en="We got your request!" data-es="¡Recibimos tu solicitud!">We got your request! 🎉</h3>
+        <p data-en="We'll reply within 24 hours to book your free audit call." data-es="Responderemos en 24 horas para agendar tu llamada de auditoría gratis.">We'll reply within 24 hours to book your free audit call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">PulseFlow Automation</div>
+  <div class="footer-links">
+    <a href="#services" data-en="Services" data-es="Servicios">Services</a>
+    <a href="#plans" data-en="Plans" data-es="Planes">Plans</a>
+    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    <a href="mailto:juanmrtzwork@gmail.com">juanmrtzwork@gmail.com</a>
+  </div>
+  <div style="font-size:0.8rem;">© 2026 PulseFlow</div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a class="wa-btn" href="https://wa.me/61450372236?text=Hi!%20I%20saw%20PulseFlow%20and%20I%27d%20like%20to%20book%20a%20free%20automation%20audit." target="_blank" rel="noopener" id="wa-btn" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- CHATBOT -->
+<button class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+  <svg class="chat-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+  <svg class="chat-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+</button>
+
+<div class="chat-widget" id="chat-widget">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-header-info">
+      <h4>PulseFlow Assistant</h4>
+      <div class="chat-status">
+        <div class="chat-status-dot"></div>
+        <p data-en="Online — usually replies instantly" data-es="En línea — responde al instante">Online — usually replies instantly</p>
+      </div>
+    </div>
+  </div>
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-options" id="chat-options"></div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chat-input" type="text" placeholder="Type a message..." />
+    <button class="chat-send" id="chat-send">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ── LANGUAGE ──
+let lang = 'en';
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = el.dataset[l] || el.dataset.en;
+  });
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+      el.placeholder = el.dataset[l] || el.dataset.en;
+    }
+  });
+  // handle select options
+  document.querySelectorAll('option[data-en]').forEach(el => {
+    el.textContent = el.dataset[l] || el.dataset.en;
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+  // Update WhatsApp link
+  const msgs = {
+    en: "Hi! I saw PulseFlow and I'd like to book a free automation audit.",
+    es: "¡Hola! Vi PulseFlow y me gustaría reservar una auditoría de automatización gratis."
+  };
+  const waBtn = document.getElementById('wa-btn');
+  const num = waBtn.href.match(/wa\.me\/(\d+)/)[1];
+  waBtn.href = `https://wa.me/${num}?text=${encodeURIComponent(msgs[l])}`;
+  // Update chatbot placeholder
+  document.getElementById('chat-input').placeholder = l === 'es' ? 'Escribe un mensaje...' : 'Type a message...';
+  // Restart chat in new lang
+  chatState = 0;
+  document.getElementById('chat-messages').innerHTML = '';
+  document.getElementById('chat-options').innerHTML = '';
+  if (chatOpen) startChat();
+}
+
+// ── FORM ──
+const form = document.getElementById('audit-form');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const data = new FormData(form);
+  try {
+    await fetch('/', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: new URLSearchParams(data).toString() });
+  } catch(_) {}
+  form.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+
+// ── CHATBOT ──
+const chatFlows = {
+  en: [
+    { bot: "Hi! 👋 I'm the PulseFlow assistant. What process would you like to automate?", options: ["Lead follow-up", "Collections", "Onboarding", "Reporting", "Something else"] },
+    { bot: "Got it! That's one of the most common pain points we fix. What tools do you currently use for this?", options: ["Email + spreadsheets", "CRM (HubSpot/Salesforce)", "Custom software", "Nothing — all manual"] },
+    { bot: "Interesting. How much time does your team spend on this process weekly?", options: ["Less than 2 hours", "2–5 hours", "5–10 hours", "10+ hours"] },
+    { bot: "That's significant! We've helped companies save similar time. What's the best way to reach you?", options: [] },
+    { bot: "Perfect. Book a free 30-min audit call and we'll map your automation together →", options: ["Book free audit", "Send WhatsApp"] }
+  ],
+  es: [
+    { bot: "¡Hola! 👋 Soy el asistente de PulseFlow. ¿Qué proceso te gustaría automatizar?", options: ["Seguimiento de leads", "Cobranzas", "Onboarding", "Reportes", "Otro"] },
+    { bot: "¡Entendido! Es uno de los puntos de dolor más comunes que resolvemos. ¿Qué herramientas usas actualmente?", options: ["Email + hojas de cálculo", "CRM (HubSpot/Salesforce)", "Software propio", "Nada — todo manual"] },
+    { bot: "Interesante. ¿Cuánto tiempo gasta tu equipo en este proceso cada semana?", options: ["Menos de 2 horas", "2–5 horas", "5–10 horas", "10+ horas"] },
+    { bot: "¡Es significativo! Hemos ayudado a empresas a ahorrar ese tiempo. ¿Cuál es la mejor forma de contactarte?", options: [] },
+    { bot: "¡Perfecto! Reserva una auditoría gratis de 30 min y mapeamos tu automatización juntos →", options: ["Reservar auditoría", "Enviar WhatsApp"] }
+  ]
+};
+
+let chatState = 0;
+let chatOpen = false;
+
+function addMsg(text, type) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `msg msg-${type}`;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showOptions(opts) {
+  const container = document.getElementById('chat-options');
+  container.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'chat-opt';
+    btn.textContent = opt;
+    btn.onclick = () => handleOption(opt);
+    container.appendChild(btn);
+  });
+}
+
+function handleOption(text) {
+  if (text === 'Book free audit' || text === 'Reservar auditoría') {
+    document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+    toggleChat();
+    return;
+  }
+  if (text === 'Send WhatsApp' || text === 'Enviar WhatsApp') {
+    document.getElementById('wa-btn').click();
+    return;
+  }
+  addMsg(text, 'user');
+  document.getElementById('chat-options').innerHTML = '';
+  chatState++;
+  const flow = chatFlows[lang];
+  if (chatState < flow.length) {
+    setTimeout(() => {
+      addMsg(flow[chatState].bot, 'bot');
+      if (flow[chatState].options.length > 0) showOptions(flow[chatState].options);
+    }, 600);
+  }
+}
+
+function startChat() {
+  const flow = chatFlows[lang];
+  chatState = 0;
+  setTimeout(() => {
+    addMsg(flow[0].bot, 'bot');
+    showOptions(flow[0].options);
+  }, 400);
+}
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chat-toggle').classList.toggle('open', chatOpen);
+  document.getElementById('chat-widget').classList.toggle('open', chatOpen);
+  if (chatOpen && document.getElementById('chat-messages').children.length === 0) {
+    startChat();
+  }
+}
+
+document.getElementById('chat-toggle').addEventListener('click', toggleChat);
+
+document.getElementById('chat-send').addEventListener('click', sendMsg);
+document.getElementById('chat-input').addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+
+function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg(text, 'user');
+  document.getElementById('chat-options').innerHTML = '';
+  chatState++;
+  const flow = chatFlows[lang];
+  if (chatState < flow.length) {
+    setTimeout(() => {
+      addMsg(flow[chatState].bot, 'bot');
+      if (flow[chatState].options.length > 0) showOptions(flow[chatState].options);
+    }, 700);
+  } else {
+    setTimeout(() => {
+      const thanks = lang === 'es' ? '¡Gracias! Te responderemos pronto. 🙌' : 'Thanks! We\'ll be in touch soon. 🙌';
+      addMsg(thanks, 'bot');
+    }, 700);
+  }
+}
+</script>
+
+</body>
+</html>
